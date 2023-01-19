@@ -1,7 +1,9 @@
 package com.example.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,11 +14,17 @@ import org.hibernate.annotations.GenericGenerator;
 public class Product {
 
 	@Id
-	@GenericGenerator(name = "ref",strategy = "increment")
-	@GeneratedValue(generator = "ref")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "product_id")
 	private int pid;
+	
+	@Column(name="product_name")
 	private String pname;
+	
+	@Column(name="quantity")
 	private int quantity;
+	
+	@Column(name="price")
 	private double price;
 	
 	public int getPid() {

@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication
-@ComponentScan(basePackages = "com.example.*")
+@SpringBootApplication(scanBasePackages = "com.example.*")
+@ComponentScan(basePackages = "com.example.*") 
 @EnableJpaRepositories("com.example.*")
-@EntityScan("com.example*")
+@EntityScan("com.example.*")
 public class H2DbApplication { 
 
 	public static void main(String[] args) {
