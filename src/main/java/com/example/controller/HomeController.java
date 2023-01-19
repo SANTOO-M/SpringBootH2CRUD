@@ -45,7 +45,6 @@ public class HomeController {
 		m.addAttribute("product", productService.findProduct(pid));
 		return "ProductEdit";
 	}
-
 	
 	@RequestMapping("/updateProduct")
 	public String updateProduct(@ModelAttribute("product") Product product) {
@@ -60,4 +59,45 @@ public class HomeController {
 		return "redirect:/ViewAllProducts";
 	}
 	
+	@RequestMapping("/names/{n}")
+	public String printNames(@PathVariable("n")String name, Model m) {
+		System.out.println("Here Controller...");
+		List<Product> productnames=productService.findProductByName(name);
+		for(int i=0;i<productnames.size();i++) {
+			System.out.println(productnames.get(i).getPid()+"\t"+
+					productnames.get(i).getPname()+"\t"+
+					productnames.get(i).getQuantity()+"\t"+
+					productnames.get(i).getPrice());
+		}
+		m.addAttribute("records",productnames);
+		return "display";
+	}
+	
+	@RequestMapping("/qty/{quantity}")
+	public String printQuantity(@PathVariable("quantity") int quantity, Model m) {
+		System.out.println("Quantity...");
+		List<Product> productnames=productService.findProductByQuantity(quantity);
+		for(int i=0;i<productnames.size();i++) {
+			System.out.println(productnames.get(i).getPid()+"\t"+
+					productnames.get(i).getPname()+"\t"+
+					productnames.get(i).getQuantity()+"\t"+
+					productnames.get(i).getPrice());
+		}
+		m.addAttribute("records",productnames);
+		return "display";
+	}
+	
+	@RequestMapping("/gt/{quantity}")
+	public String printQuantityGT(@PathVariable("quantity") int quantity, Model m) {
+		System.out.println("Quantity...");
+		List<Product> productnames=productService.findProductByQuantityGreaterThan(quantity);
+		for(int i=0;i<productnames.size();i++) {
+			System.out.println(productnames.get(i).getPid()+"\t"+
+					productnames.get(i).getPname()+"\t"+
+					productnames.get(i).getQuantity()+"\t"+
+					productnames.get(i).getPrice());
+		}
+		m.addAttribute("records",productnames);
+		return "display";
+	}
 }

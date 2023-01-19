@@ -37,11 +37,25 @@ public class ProductService {
 		p2.setQuantity(p.getQuantity());
 		p2.setPrice(p.getPrice());
 		productRepository.save(p2);
-
 	}
 	
 	public void productDelete(int pid) {
 		productRepository.deleteById(pid);
+	}
+	
+	public List<Product> findProductByName(String name){
+		List<Product> productNames=productRepository.findBypname(name);
+		return productNames;
+	}
+	
+	public List<Product> findProductByQuantity(int quantity){
+		List<Product> productquantity=productRepository.findByquantity(quantity);
+		return productquantity;
+	}
+	
+	public List<Product> findProductByQuantityGreaterThan(int quantity){
+		List<Product> productquantity=productRepository.findByquantityGreaterThan(quantity);
+		return productquantity;
 	}
 }
 
