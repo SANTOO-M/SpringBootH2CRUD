@@ -16,20 +16,19 @@ import com.example.model.Product;
 @Controller
 public class HomeController {
 
-	private ProductService productService;
-	
+	private ProductService productService;	
 	public HomeController(ProductService productService) {
 		this.productService=productService;
 		System.out.println("Front-Control Object Created.");
 	}
 	
 	@RequestMapping("/")
-	public String addProduct() {
-		return "Registration";
+	public ModelAndView addProduct() {
+		return new ModelAndView("Registration").addObject("product", new Product());
 	}
 	
 	@RequestMapping("/saveProduct")
-	public String saveProduct(Product p) {
+	public String saveProduct(@ModelAttribute("product") Product p) {
 		productService.saveProduct(p);
 		return "Registration";
 	}
