@@ -63,4 +63,9 @@ public class Product {
 		System.out.println("Product Object Created");
 	}
 
+	@Override
+	public String toString() {
+		return "Product [pid=" + pid + ", pname=" + pname + ", quantity=" + quantity + ", price=" + price + "]";
+	}
+
 }
